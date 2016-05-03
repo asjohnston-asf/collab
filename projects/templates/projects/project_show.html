@@ -6,6 +6,7 @@
 <p>Created: {{ project.created }}</p>
 <p>Description:  {{ project.description }}</p>
 
+{% if request.user != project.owner %}
 <form action="{% url 'projects:interested' project.id %}" method="post">
 {% csrf_token %}
 {% if request.user in project.interested.all %}
@@ -14,6 +15,7 @@
 	<input type="submit" value="I'm Interested!">
 {% endif %}
 </form>
+{% endif %}
 
 <h2>Interested Users</h2>
 {% for user in project.interested.all %}
