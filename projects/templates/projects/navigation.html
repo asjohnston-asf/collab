@@ -5,7 +5,8 @@
         {% if request.user.is_authenticated %}
             <b>Welcome, {{ request.user.get_username }}!</b>
             <a href="{% url 'projects:user_show' request.user.id %}">My Profile</a>
-
+            <a href="{% url 'projects:user_list' %}">Users</a>
+            <a href="{% url 'projects:project_list' %}">Projects</a>
             <a href="/admin/logout/">Logout</a>
         {% else %}
             <a href="/admin/login/">Login</a> or
