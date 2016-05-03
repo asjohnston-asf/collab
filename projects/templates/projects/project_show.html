@@ -2,7 +2,7 @@
 
 <h1>{{ project.title }}</h1>
 
-<p>Owner: {{ project.owner }}</p>
+<p>Owner: <a href="{% url 'projects:user_show' project.owner.id  %}">{{ project.owner }}</a></p>
 <p>Created: {{ project.created }}</p>
 <p>Description:  {{ project.description }}</p>
 
