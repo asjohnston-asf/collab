@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 app_name = 'projects'
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'users/(?P<pk>[0-9]+)/', views.UserShow.as_view(), name='user_show'),
-    url(r'projects/(?P<pk>[0-9]+)/', views.ProjectShow.as_view(), name='project_show'),
+    url(r'^$', login_required(views.index), name='index'),
+    url(r'users/(?P<pk>[0-9]+)/', login_required(views.UserShow.as_view()), name='user_show'),
+    url(r'projects/(?P<pk>[0-9]+)/', login_required(views.ProjectShow.as_view()), name='project_show'),
 ]
 
