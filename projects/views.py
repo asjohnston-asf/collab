@@ -24,6 +24,13 @@ class ProjectShow(generic.DetailView):
     model = Project
     template_name = 'projects/project_show.html'
 
+class ProjectCreate(generic.edit.CreateView):
+    model = Project
+    fields = ['title', 'description']
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(ProjectCreate, self).form_valid(form)
+
 def toggleInterest(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user in project.interested.all():

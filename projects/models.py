@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 class Profile(models.Model):
     LOCATIONS = (
@@ -69,4 +70,5 @@ class Project(models.Model):
     interested = models.ManyToManyField(User, related_name='interested_in', blank=True)
     def __str__(self):
         return self.title
-
+    def get_absolute_url(self):
+        return reverse('projects:project_show', args=(self.id,))
