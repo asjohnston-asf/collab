@@ -11,11 +11,11 @@
 
 <h2>Projects</h2>
 {% for project in user.projects.all %}
-	<p>{{ project.owner }} - {{ project.title }}
+	<p><a href="{% url 'projects:project_show' project.id %}">{{ project.owner }} - {{ project.title }}</a></p>
 {% endfor %}
 
 <h2>Interested In</h2>
 {% for project in user.interested_in.all %}
-        <p>{{ project.owner }} - {{ project.title }}
+	<p><a href="{% url 'projects:project_show' project.id %}">{{ project.owner }} - {{ project.title }}</a></p>
 {% endfor %}
 

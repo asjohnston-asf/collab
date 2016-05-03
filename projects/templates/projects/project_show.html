@@ -8,6 +8,6 @@
 
 <h2>Interested Users</h2>
 {% for user in project.interested.all %}
-	<p>{{ user.username }}</p>
+	<p><a href="{% url 'projects:user_show' user.id %}">{{ user.username }}</a></p>
 {% endfor %}
 
