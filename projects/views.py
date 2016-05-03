@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -23,4 +23,13 @@ class ProjectList(generic.ListView):
 class ProjectShow(generic.DetailView):
     model = Project
     template_name = 'projects/project_show.html'
+
+def toggleInterest(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user in project.interested.all():
+        project.interested.remove(request.user)
+    else:
+        project.interested.add(request.user)
+    project.save()
+    return HttpResponseRedirect(reverse('projects:project_show', args=(project_id,)))
 

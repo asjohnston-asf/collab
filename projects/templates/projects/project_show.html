@@ -6,6 +6,17 @@
 <p>Created: {{ project.created }}</p>
 <p>Description:  {{ project.description }}</p>
 
+{% if request.user in project.interested.all %}
+	<p>you are interested in this project</p>
+{% else %}
+	<p>you are NOT interested in this project</p>
+{% endif %}
+
+<form action="{% url 'projects:interested' project.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Toggle">
+</form>
+
 <h2>Interested Users</h2>
 {% for user in project.interested.all %}
 	<p><a href="{% url 'projects:user_show' user.id %}">{{ user.username }}</a></p>
