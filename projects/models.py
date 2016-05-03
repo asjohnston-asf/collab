@@ -63,6 +63,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(default=timezone.now)
 
