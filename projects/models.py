@@ -62,7 +62,7 @@ class Profile(models.Model):
     age = models.PositiveSmallIntegerField(blank=True, null=True)
 
 class Project(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(default=timezone.now)
