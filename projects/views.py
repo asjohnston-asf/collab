@@ -3,12 +3,20 @@ from django.contrib.auth.models import User
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib.auth import logout as authlogout
+from django.contrib.auth import logout as authlogout, login as authlogin, authenticate
 from .models import Project
 from .forms import UserForm
 
 def index(request):
     return HttpResponseRedirect(reverse('projects:user_show', args=(request.user.id,)))
+
+def login(request):
+    if request.method == "POST":
+        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            authlogin(request, user)
+            return HttpResponseRedirect(reverse('projects:index'))
+    return render(request, 'projects/login.html')
 
 def logout(request):
     authlogout(request)

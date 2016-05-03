@@ -1,0 +1,9 @@
+<form action="" method="post">
+{% csrf_token %}
+Username:<input name="username" type="text" /><br />
+Password:<input name="password" type="password" /><br />
+<input type="submit" value="Log in" />
+</form>
+
+<a href="{% url 'projects:user_create' %}">New User</a>
+
