@@ -10,6 +10,13 @@
 <p>About Me:  {{user.profile.about }}</p>
 
 <h2>Projects</h2>
+
+{% if user == request.user %}
+<form action="{% url 'projects:project_create' %}">
+<input type="submit" value="New Project">
+</form>
+{% endif %}
+
 {% for project in user.projects.all %}
 	<p><a href="{% url 'projects:project_show' project.id %}">{{ project.owner }} - {{ project.title }}</a></p>
 {% endfor %}
