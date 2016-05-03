@@ -1,0 +1,13 @@
+{% include "projects/navigation.html" %}
+
+<h1>{{ project.title }}</h1>
+
+<p>Owner: {{ project.owner }}</p>
+<p>Created: {{ project.created }}</p>
+<p>Description:  {{ project.description }}</p>
+
+<h2>Interested Users</h2>
+{% for user in project.interested.all %}
+	<p>{{ user.username }}</p>
+{% endfor %}
+
