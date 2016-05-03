@@ -35,7 +35,10 @@ def UserCreate(request):
         form = UserForm(request.POST)
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
-            return HttpResponseRedirect(reverse('projects:index'))
+            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            if user is not None:
+                authlogin(request, user)
+                return HttpResponseRedirect(reverse('projects:index'))
     else:
         form = UserForm()
     return render(request, 'projects/user_form.html', {'form': form})
