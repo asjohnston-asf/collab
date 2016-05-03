@@ -66,7 +66,7 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(default=timezone.now)
-    interested = models.ManyToManyField(User, related_name='interested_in')
+    interested = models.ManyToManyField(User, related_name='interested_in', blank=True)
     def __str__(self):
         return self.title
 
