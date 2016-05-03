@@ -3,10 +3,15 @@ from django.contrib.auth.models import User
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import logout as authlogout
 from .models import Project
 
 def index(request):
     return HttpResponseRedirect(reverse('projects:user_show', args=(request.user.id,)))
+
+def logout(request):
+    authlogout(request)
+    return HttpResponseRedirect(reverse('projects:index'))
 
 class UserList(generic.ListView):
     model = User

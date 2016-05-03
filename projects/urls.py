@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 app_name = 'projects'
 urlpatterns = [
     url(r'^$', login_required(views.index), name='index'),
+    url(r'^logout/$', views.logout, name='logout'),
     url(r'users/(?P<pk>[0-9]+)/', login_required(views.UserShow.as_view()), name='user_show'),
     url(r'users/', login_required(views.UserList.as_view()), name='user_list'),
     url(r'projects/add/$', login_required(views.ProjectCreate.as_view()), name='project_create'),

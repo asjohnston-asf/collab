@@ -7,7 +7,7 @@
             <a href="{% url 'projects:user_show' request.user.id %}">My Profile</a>
             <a href="{% url 'projects:user_list' %}">Users</a>
             <a href="{% url 'projects:project_list' %}">Projects</a>
-            <a href="/admin/logout/">Logout</a>
+            <a href="{% url 'projects:logout' %}">Logout</a>
         {% else %}
             <a href="/admin/login/">Login</a> or
         {% endif %}
