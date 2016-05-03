@@ -3,6 +3,7 @@
         <div class="navbar-side navbar-left"></div>
         <div class="navbar-content">
         {% if user.is_authenticated %}
+            <b>Welcome, {{ user.get_username }}!</b>
             <a href="/projects/">Home</a>
 
             <a href="/admin/logout/">Logout</a>
