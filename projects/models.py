@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
@@ -60,4 +60,9 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, choices=LOCATIONS, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
     age = models.PositiveSmallIntegerField(blank=True, null=True)
+
+class Project(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(blank=True, null=True)
+    created = models.DateTimeField(default=timezone.now)
 
