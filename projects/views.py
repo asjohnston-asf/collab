@@ -35,8 +35,6 @@ def UserCreate(request):
         form = UserForm(request.POST)
         if form.is_valid():
             new_user = User.objects.create_user(**form.cleaned_data)
-            new_user.is_staff = True
-            new_user.save()
             return HttpResponseRedirect(reverse('projects:index'))
     else:
         form = UserForm()
