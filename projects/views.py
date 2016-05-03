@@ -1,10 +1,11 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout as authlogout
 from .models import Project
+from .forms import UserForm
 
 def index(request):
     return HttpResponseRedirect(reverse('projects:user_show', args=(request.user.id,)))
@@ -20,6 +21,18 @@ class UserList(generic.ListView):
 class UserShow(generic.DetailView):
     model = User
     template_name = 'projects/user_show.html'
+
+def UserCreate(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            new_user.is_staff = True
+            new_user.save()
+            return HttpResponseRedirect(reverse('projects:index'))
+    else:
+        form = UserForm()
+    return render(request, 'projects/user_form.html', {'form': form})
 
 class ProjectList(generic.ListView):
     model = Project
