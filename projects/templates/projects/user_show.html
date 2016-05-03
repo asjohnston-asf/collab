@@ -4,5 +4,18 @@
 
 <p>First Name: {{ user.first_name }}</p>
 <p>Last Name: {{ user.last_name }}</p>
+<p>E-mail:  {{ user.email }}</p>
+<p>Age:  {{ user.profile.age }}</p>
+<p>Location: {{ user.profile.location }}</p>
 <p>About Me:  {{user.profile.about }}</p>
+
+<h2>Projects</h2>
+{% for project in user.projects.all %}
+	<p>{{ project.owner }} - {{ project.title }}
+{% endfor %}
+
+<h2>Interested In</h2>
+{% for project in user.interested_in.all %}
+        <p>{{ project.owner }} - {{ project.title }}
+{% endfor %}
 
