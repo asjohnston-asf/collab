@@ -4,7 +4,7 @@
         <div class="navbar-content">
         {% if request.user.is_authenticated %}
             <b>Welcome, {{ request.user.get_username }}!</b>
-            <a href="/projects/">Home</a>
+            <a href="{% url 'projects:user_show' request.user.id %}">My Profile</a>
 
             <a href="/admin/logout/">Logout</a>
         {% else %}
