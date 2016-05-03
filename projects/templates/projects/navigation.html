@@ -1,0 +1,16 @@
+<div id="topbar">
+    <div class="navbar">
+        <div class="navbar-side navbar-left"></div>
+        <div class="navbar-content">
+        {% if user.is_authenticated %}
+            <a href="/projects/">Home</a>
+
+            <a href="/admin/logout/">Logout</a>
+        {% else %}
+            <a href="/admin/login/">Login</a> or
+        {% endif %}
+        </div>
+        <div class="navbar-side navbar-right"></div>
+    </div>
+</div>
+
