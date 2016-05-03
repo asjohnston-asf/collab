@@ -1,0 +1,7 @@
+{% include "projects/navigation.html" %}
+
+<h1>Projects</h1>
+
+{% for project in object_list %}
+	<p><a href="{% url 'projects:project_show' project.id %}">{{ project.title }}</a></p>
+{% endfor %}

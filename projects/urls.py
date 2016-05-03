@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'users/(?P<pk>[0-9]+)/', login_required(views.UserShow.as_view()), name='user_show'),
     url(r'users/', login_required(views.UserList.as_view()), name='user_list'),
     url(r'projects/(?P<pk>[0-9]+)/', login_required(views.ProjectShow.as_view()), name='project_show'),
+    url(r'projects/', login_required(views.ProjectList.as_view()), name='project_list'),
 ]
 
