@@ -6,7 +6,7 @@
 <p>Last Name: {{ user.last_name }}</p>
 <p>E-mail:  {{ user.email }}</p>
 <p>Age:  {{ user.profile.age }}</p>
-<p>Location: {{ user.profile.location }}</p>
+<p>Location: {{ user.profile.get_location_display }}</p>
 <p>About Me:  {{user.profile.about }}</p>
 
 <h2>Projects</h2>
