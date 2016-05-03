@@ -1,0 +1,7 @@
+{% include "projects/navigation.html" %}
+
+<h1>Users</h1>
+
+{% for user in object_list %}
+	<p><a href="{% url 'projects:user_show' user.id %}">{{ user.username }}</a></p>
+{% endfor %}

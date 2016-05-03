@@ -8,6 +8,10 @@ from .models import Project
 def index(request):
     return HttpResponseRedirect(reverse('projects:user_show', args=(request.user.id,)))
 
+class UserList(generic.ListView):
+    model = User
+    template_name = 'projects/user_list.html'
+
 class UserShow(generic.DetailView):
     model = User
     template_name = 'projects/user_show.html'
