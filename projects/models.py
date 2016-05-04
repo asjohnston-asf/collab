@@ -62,6 +62,8 @@ class Profile(models.Model):
     email = models.EmailField(blank=True)
     location = models.CharField(max_length=30, choices=LOCATIONS, blank=True)
     about = models.TextField(blank=True)
+    def get_absolute_url(self):
+        return reverse('projects:user_show', args=(self.user.id,))
 
 class Project(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')

@@ -4,7 +4,7 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout as authlogout, login as authlogin, authenticate
-from .models import Project
+from .models import Project, Profile
 from .forms import UserForm
 from django.core.exceptions import PermissionDenied
 
@@ -43,6 +43,15 @@ def UserCreate(request):
     else:
         form = UserForm()
     return render(request, 'projects/user_form.html', {'form': form})
+
+class UserUpdate(generic.edit.UpdateView):
+    model = Profile
+    fields = ['name', 'email', 'location', 'about']
+    def get_object(self):
+        profile = Profile.objects.get(user_id=self.kwargs['pk'])
+        if self.request.user != profile.user:
+            raise PermissionDenied
+        return profile
 
 class ProjectList(generic.ListView):
     model = Project

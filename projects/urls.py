@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'users/add/$', views.UserCreate, name='user_create'),
+    url(r'users/(?P<pk>[0-9]+)/update/$', login_required(views.UserUpdate.as_view()), name='user_update'),
     url(r'users/(?P<pk>[0-9]+)/', login_required(views.UserShow.as_view()), name='user_show'),
     url(r'users/', login_required(views.UserList.as_view()), name='user_list'),
     url(r'projects/add/$', login_required(views.ProjectCreate.as_view()), name='project_create'),
