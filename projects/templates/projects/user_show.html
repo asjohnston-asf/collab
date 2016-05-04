@@ -7,6 +7,13 @@
 <p>Location: {{ user.profile.get_location_display }}</p>
 <p>About Me:  {{user.profile.about }}</p>
 
+{% if request.user = user %}
+<form action="{% url 'projects:user_update' user.id %}" method="get">
+{% csrf_token %}
+<input type="submit" value="Edit">
+</form>
+{% endif %}
+
 <h2>Projects</h2>
 
 {% if user == request.user %}
