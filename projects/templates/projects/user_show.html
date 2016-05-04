@@ -16,15 +16,15 @@
 
 <h2>Projects</h2>
 
+{% for project in user.projects.all %}
+	<p><a href="{% url 'projects:project_show' project.id %}">{{ project.title }}</a></p>
+{% endfor %}
+
 {% if user == request.user %}
 <form action="{% url 'projects:project_create' %}">
 <input type="submit" value="New Project">
 </form>
 {% endif %}
-
-{% for project in user.projects.all %}
-	<p><a href="{% url 'projects:project_show' project.id %}">{{ project.title }}</a></p>
-{% endfor %}
 
 <h2>Interested In</h2>
 {% for project in user.interested_in.all %}
