@@ -2,10 +2,8 @@
 
 <h1>{{ user.username }}</h1>
 
-<p>First Name: {{ user.first_name }}</p>
-<p>Last Name: {{ user.last_name }}</p>
-<p>E-mail:  {{ user.email }}</p>
-<p>Age:  {{ user.profile.age }}</p>
+<p>Name: {{ user.profile.name }}</p>
+<p>E-mail:  {{ user.profile.email }}</p>
 <p>Location: {{ user.profile.get_location_display }}</p>
 <p>About Me:  {{user.profile.about }}</p>
 
