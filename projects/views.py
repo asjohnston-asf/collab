@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import logout as authlogout, login as authlogin, authenticate
 from .models import Project
 from .forms import UserForm
+from django.core.exceptions import PermissionDenied
 
 def index(request):
     return HttpResponseRedirect(reverse('projects:user_show', args=(request.user.id,)))
@@ -61,6 +62,11 @@ class ProjectCreate(generic.edit.CreateView):
 class ProjectUpdate(generic.edit.UpdateView):
     model = Project
     fields = ['title', 'description']
+    def get_object(self):
+        project = Project.objects.get(id=self.kwargs['pk'])
+        if self.request.user != project.owner:
+            raise PermissionDenied
+        return project
 
 def toggleInterest(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
