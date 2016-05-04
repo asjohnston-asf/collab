@@ -57,10 +57,11 @@ class Profile(models.Model):
         ('WI','Wisconsin'),
         ('WY','Wyoming'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=120, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     location = models.CharField(max_length=30, choices=LOCATIONS, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
-    age = models.PositiveSmallIntegerField(blank=True, null=True)
 
 class Project(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
