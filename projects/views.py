@@ -38,6 +38,7 @@ def UserCreate(request):
             new_user = User.objects.create_user(**form.cleaned_data)
             user = authenticate(username=request.POST['username'], password=request.POST['password'])
             if user is not None:
+                Profile(user=user).save()
                 authlogin(request, user)
                 return HttpResponseRedirect(reverse('projects:index'))
     else:
