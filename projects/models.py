@@ -58,15 +58,15 @@ class Profile(models.Model):
         ('WY','Wyoming'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    name = models.CharField(max_length=120, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    location = models.CharField(max_length=30, choices=LOCATIONS, blank=True, null=True)
-    about = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=120, blank=True)
+    email = models.EmailField(blank=True)
+    location = models.CharField(max_length=30, choices=LOCATIONS, blank=True)
+    about = models.TextField(blank=True)
 
 class Project(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
     title = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True)
     created = models.DateTimeField(default=timezone.now)
     interested = models.ManyToManyField(User, related_name='interested_in', blank=True)
     def __str__(self):
