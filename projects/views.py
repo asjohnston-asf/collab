@@ -58,6 +58,10 @@ class ProjectCreate(generic.edit.CreateView):
         form.instance.owner = self.request.user
         return super(ProjectCreate, self).form_valid(form)
 
+class ProjectUpdate(generic.edit.UpdateView):
+    model = Project
+    fields = ['title', 'description']
+
 def toggleInterest(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user in project.interested.all():

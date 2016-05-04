@@ -15,6 +15,11 @@
 	<input type="submit" value="I'm Interested!">
 {% endif %}
 </form>
+{% else %}
+<form action="{% url 'projects:project_update' project.id %}" method="get">
+{% csrf_token %}
+<input type="submit" value="Edit">
+</form>
 {% endif %}
 
 <h2>Interested Users</h2>
