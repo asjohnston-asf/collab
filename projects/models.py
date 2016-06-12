@@ -3,6 +3,15 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+
+class Subject(models.Model):
+    description = models.CharField(max_length=200)
+    dewey_class_code = models.CharField(max_length=3)
+    color_code = models.CharField(max_length=7)
+    def __str__(self):
+        return self.description
+
+
 class Profile(models.Model):
     LOCATIONS = (
         ('AL','Alabama'),
@@ -62,10 +71,12 @@ class Profile(models.Model):
     email = models.EmailField(blank=True)
     location = models.CharField(max_length=30, choices=LOCATIONS, blank=True)
     about = models.TextField(blank=True)
+    skills = models.ManyToManyField(Subject, blank=True)
     def get_absolute_url(self):
         return reverse('projects:user_show', args=(self.user.id,))
     def __str__(self):
         return self.user.username
+
 
 class Project(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
@@ -77,3 +88,4 @@ class Project(models.Model):
         return self.title
     def get_absolute_url(self):
         return reverse('projects:project_show', args=(self.id,))
+
