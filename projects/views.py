@@ -47,7 +47,7 @@ def UserCreate(request):
 
 class UserUpdate(generic.edit.UpdateView):
     model = Profile
-    fields = ['name', 'email', 'location', 'about']
+    fields = ['name', 'email', 'location', 'about', 'skills']
     def get_object(self):
         profile = Profile.objects.get(user_id=self.kwargs['pk'])
         if self.request.user != profile.user:
