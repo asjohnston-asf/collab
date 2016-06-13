@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w575pppy*vqur3do(@+m3+v2vbh*#gfqqp1g*jk0ye*2xo9&m_'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'collab.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'collab',
-        'USER': 'admin',
-        'PASSWORD': 'RpADpUdg6JgH9itpOnno',
-        'HOST': 'collab.cgfndqbit3yw.us-west-2.rds.amazonaws.com',
-        'PORT': '3306',
+        'HOST': os.environ['DJANGO_DATABASE_HOST'],
+        'PORT': os.environ['DJANGO_DATABASE_PORT'],
+        'NAME': os.environ['DJANGO_DATABASE_NAME'],
+        'USER': os.environ['DJANGO_DATABASE_USER'],
+        'PASSWORD': os.environ['DJANGO_DATABASE_PASSWORD'],
     }
 }
 
